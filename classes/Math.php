@@ -1,4 +1,5 @@
 <?php
+namespace RentalCompany;
 /**
 *
 * Mathematische berechnungen in einer statischen Klasse
