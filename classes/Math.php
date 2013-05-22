@@ -13,6 +13,20 @@ class Math
 {
 	const PI = 3.14159;
 	
+	public static function __callstatic($method, $args)
+	{
+		switch (strtolower($method))
+		{
+			case 'substract':
+				return $args[0] - $args[1];
+				break;
+				
+			default:
+				trigger_error("Unbekannte Rechenoperation {$method}", E_USER_WARNING);
+				return false;
+		}
+	}
+	
 	public static function factorial($number)
 	{
 		if($number === 1)

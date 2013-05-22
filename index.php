@@ -188,6 +188,11 @@ $bmw3->openRoof();
 
 
 
+printf("24 - 8 = %d\n", Math::substract(24,8));
+nl();
+printf("24 / 8 = %d\n", Math::divide(24,8));
+
+
 
 
 
