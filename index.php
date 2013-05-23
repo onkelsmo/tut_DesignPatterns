@@ -9,6 +9,8 @@ namespace RentalCompany;
 * @since 31.01.2013
 *
 **/
+use ExceptionHandling\CSVFile;
+
 use RentalCompany\persons\Driver;
 use RentalCompany\displayCar;
 
@@ -22,6 +24,7 @@ include 'classes/Airplane.php';
 include 'classes/Driver.php';
 
 include 'classes/Math.php';
+include 'classes/Invoke.php';
 include 'classes/Debugger.php';
 
 use MyNamespace\EmptyClass;
@@ -191,10 +194,45 @@ $bmw3->openRoof();
 printf("24 - 8 = %d\n", Math::substract(24,8));
 nl();
 printf("24 / 8 = %d\n", Math::divide(24,8));
+nl();
 
+// __toString()
+echo $bmw3;
 
+$bmw3->startEngine();
+$bmw3->moveForward("100");
+echo $bmw3;
 
+// __invoke()
+$multiply = new Multiply();
+echo "6 * 7 * 3 = ".$multiply(6,7,3);
+nl();
+nl();
 
+// Exceptions
+use ExceptionHandling;
+include 'classes/CSVFile.php';
+
+try 
+{
+	$file = new CSVFile('users.csv');
+	$file->open();
+	$file->lock();
+	while (!$file->endOfFile())
+	{
+		$fileds = $file->readLine();
+		echo "{$fileds[0]} <{$fileds[1]}><br />";
+	}
+	$file->close();
+}
+catch (\Exception $e)
+{
+	$line = $e->getLine();
+	$file = $e->getFile();
+	echo "Es ist ein Fehler aufgetreten.<br />";
+	echo $e->getMessage() . "<br />";
+	echo "Zeile {$line} in {$file}<br />";
+}
 
 
 

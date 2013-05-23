@@ -80,6 +80,7 @@ class Car implements Vehicle
 		$this->milage = 0;
 	}
 	
+	// Interceptors
 	public function __call($method, $args)
 	{
 		echo "Die Methode {$method} wurde aufgerufen.<br />";
@@ -96,6 +97,27 @@ class Car implements Vehicle
 			echo "{$no}. {$arg}<br />";
 			$no++;
 		}
+	}
+	
+	public function __toString()
+	{
+		$string = "Instanz der Klasse Car<br />";
+		$string .= " +Hersteller: {$this->manufacturer}<br />";
+		$string .= " +Farbe: {$this->color}<br />";
+		$string .= " +Tachostand: {$this->milage}<br />";
+		
+		if ($this->engineStartet === true)
+		{
+			$string .= " +Der Motor läuft.<br />";
+		}
+		else 
+		{
+			$string .= " +Der Motor läuft nicht.<br />";
+		}
+		
+		$string .= "<br />";
+		
+		return $string;
 	}
 	
 	// Methods
