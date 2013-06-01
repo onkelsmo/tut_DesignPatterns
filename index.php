@@ -14,7 +14,7 @@ use ExceptionHandling\CSVFile;
 use RentalCompany\persons\Driver;
 use RentalCompany\displayCar;
 
-include '../test/freaky_functions.php';
+include 'classes/freaky_functions.php';
 include 'classes/Vehicle.php';
 include 'classes/Foo.php';
 include 'classes/Car.php';
@@ -233,11 +233,6 @@ catch (\Exception $e)
 	echo $e->getMessage() . "<br />";
 	echo "Zeile {$line} in {$file}<br />";
 }
-
-
-
-
-
 
 
 
