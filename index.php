@@ -213,7 +213,7 @@ nl();
 use ExceptionHandling;
 include 'classes/Exceptions.php';
 include 'classes/CSVFile.php';
-
+/*
 try 
 {
 	$file = new CSVFile('users.csv');
@@ -244,8 +244,17 @@ catch (\Exception $e)
 	echo $e->getMessage() . "<br />";
 	echo "Zeile {$line} in {$file}<br />";
 }
+*/
+nl();
 
+// Implementierung des ArrayAccess Interface
+$toyota = new Car('Toyota', 'Dunkelblau', 0, 'toyota.ini');
 
+// Gewicht ausgeben
+echo "Der Toyota wiegt {$toyota['weight']}.";
+nl();
+echo count($toyota);
+nl();
 
 
 ?>

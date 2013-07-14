@@ -12,7 +12,7 @@ namespace RentalCompany;
 
 use RentalCompany\persons\Driver;
 
-class Car implements Vehicle
+class Car implements Vehicle, \ArrayAccess, \Countable
 {
 	// Attributes
 	protected $driver;
@@ -189,6 +189,62 @@ class Car implements Vehicle
 			$ini .= "{$property} = \"{$value}\"\n";
 		}
 		$result = file_put_contents(dirname(__FILE__)."/".$this->propFile, $ini);
+	}
+	
+	// ArrayAccess Methods
+	public function offsetExists($offset)
+	{
+		// Technische Daten laden.
+		if ($this->techDetails === null)
+		{
+			$this->loadTechnicalDetails();
+		}
+		// Überprüfen, ob der Wert vorhanden ist.
+		return isset($this->techDetails[$offset]);
+	}
+	
+	public function offsetGet($offset)
+	{
+		// Technische Daten laden.
+		if ($this->techDetails === null)
+		{
+			$this->loadTechnicalDetails();
+		}
+		// Wert zurück geben
+		return $this->techDetails[$offset];
+	}
+	
+	public function offsetSet($offset, $value)
+	{
+		// Technische Daten laden.
+		if ($this->techDetails === null)
+		{
+			$this->loadTechnicalDetails();
+		}
+		// Wert im Array ändern.
+		$this->techDetails[$offset] = $value;
+	}
+	
+	public function offsetUnset($offset)
+	{
+		// Technische Daten laden.
+		if ($this->techDetails === null)
+		{
+			$this->loadTechnicalDetails();
+		}
+		// Wert aus dem Array löschen
+		unset($this->techDetails[$offset]);
+	}
+	
+	// Methods from \Countable
+	public function count()
+	{
+		// Technische Daten laden.
+		if ($this->techDetails === null)
+		{
+			$this->loadTechnicalDetails();
+		}
+		return count($this->techDetails);
 	}
 }
 
