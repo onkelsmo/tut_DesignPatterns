@@ -17,7 +17,7 @@ class CSVFile
 		
 		if ($this->fp === false)
 		{
-			throw new \Exception('Konnte Datei nicht öffnen');
+			throw new \IOException('Konnte Datei nicht öffnen');
 		}
 	}
 	
@@ -25,7 +25,7 @@ class CSVFile
 	{
 		if (flock($this->fp, $mode) === false)
 		{
-			throw new \Exception('Konnte Datei-Lock nicht erhalten');
+			throw new \IOException('Konnte Datei-Lock nicht erhalten');
 		}
 	}
 	
@@ -39,13 +39,13 @@ class CSVFile
 		$line = fgets($this->fp, 1024);
 		if ($line === false)
 		{
-			throw new \Exception('Konnte Zeile nicht auslesen');
+			throw new \IOException('Konnte Zeile nicht auslesen');
 		}
 		$fields = explode(',', trim($line));
 		
 		if (count($fields) !== 2)
 		{
-			throw new \Exception('Zeile hat ein ungültiges Format');
+			throw new \CSVException('Zeile hat ein ungültiges Format');
 		}
 		return $fields;
 	}

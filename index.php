@@ -211,6 +211,7 @@ nl();
 
 // Exceptions
 use ExceptionHandling;
+include 'classes/Exceptions.php';
 include 'classes/CSVFile.php';
 
 try 
@@ -224,6 +225,16 @@ try
 		echo "{$fileds[0]} <{$fileds[1]}><br />";
 	}
 	$file->close();
+}
+catch (\IOException $e)
+{
+	// Nur IOExceptions abfangen!
+	die('Es liegt ein Dateifehler vor, bitte informieren Sie den Administrator');
+}
+catch (\CSVException $e)
+{
+	// Nur CSVExceptions abfangen!
+	die('Das Format ist nicht korrekt!');
 }
 catch (\Exception $e)
 {
