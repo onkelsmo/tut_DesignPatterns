@@ -256,5 +256,16 @@ nl();
 echo count($toyota);
 nl();
 
+nl("Objekte als Arrays");
+// Objects as Arrays
+$mazda = new Car('Mazda', 'Gelb', 0);
+foreach ($mazda as $key => $value)
+{
+	echo "{$key} => {$value}";
+	nl();
+}
+
+
+
 
 ?>

@@ -12,18 +12,27 @@ namespace RentalCompany;
 
 use RentalCompany\persons\Driver;
 
-class Car implements Vehicle, \ArrayAccess, \Countable
+class Car implements Vehicle, \ArrayAccess, \Countable, \Iterator
 {
 	// Attributes
 	protected $driver;
 	
-	protected $manufacturer;
-	protected $color;
+	public $manufacturer;
+	public $color;
 	protected $milage;
 	protected $engineStartet = false;
 	
 	protected $propFile = null;
 	protected $techDetails = null;
+	
+	private $iterableProperties = array
+	(
+		'manufacturer',
+		'color',
+		'milage'
+	);
+	private $position = 0;
+	
 	
 	// Properties
 	public function __get($property)
@@ -245,6 +254,37 @@ class Car implements Vehicle, \ArrayAccess, \Countable
 			$this->loadTechnicalDetails();
 		}
 		return count($this->techDetails);
+	}
+	
+	// Methods from Iterator
+	public function rewind()
+	{
+		$this->position = 0;
+	}
+	
+	public function next()
+	{
+		$this->position++;
+	}
+	
+	public function key()
+	{
+		return $this->iterableProperties[$this->position];
+	}
+	
+	public function current()
+	{
+		$key = $this->key();
+		return $this->$key;
+	}
+	
+	public function valid()
+	{
+		if ($this->position < count($this->iterableProperties))
+		{
+			return true;
+		}
+		return false;
 	}
 }
 
