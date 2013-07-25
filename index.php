@@ -265,6 +265,71 @@ foreach ($mazda as $key => $value)
 	nl();
 }
 
+// IterratorAggregate
+nl();
+nl("IteratorAggregate-Interface");
+$opel = new Car('Opel', 'Schwarz', 0);
+foreach ($opel as $key => $value)
+{
+	echo "{$key} => {$value}";
+	nl();
+}
+
+// Iterator-Funktionen der SPL
+nl('Iterator-Funktionen der SPL');
+$dir = new \DirectoryIterator('./');
+$elements = 0;
+foreach ($dir as $entry)
+{
+	$elements++;
+}
+echo 'Elemente im \DirectoryIterator = ' . $elements;
+nl();
+
+echo 'Elemente im \DirectoryIterator mit iterator_count = ' . iterator_count($dir);
+nl();
+// iterator_to_array
+nl('iterator_to_array');
+// Daten für den Iterator
+$opel2 = array
+		(
+			'manufacturer'	=>	'Opel',
+			'color'			=>	'schwarz',
+			'mileage'		=>	'0',
+		);
+// Iterator erstellen
+$opelObj = new \ArrayObject($opel2);
+$opelArray = iterator_to_array($opelObj);
+dump($opelArray);
+
+// iterator_apply
+nl('iterator_apply');
+// Callback funktion erstellen
+function callback()
+{
+	echo "Callback aufgerufen!";
+	return true;
+}
+
+//$opelIterator = new \ArrayIterator($opel2);
+iterator_apply($opelObj, callback(), array($opelObj));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -12,7 +12,7 @@ namespace RentalCompany;
 
 use RentalCompany\persons\Driver;
 
-class Car implements Vehicle, \ArrayAccess, \Countable, \Iterator
+class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \IteratorAggregate
 {
 	// Attributes
 	protected $driver;
@@ -256,7 +256,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, \Iterator
 		return count($this->techDetails);
 	}
 	
-	// Methods from Iterator
+	// Methods from \Iterator
 	public function rewind()
 	{
 		$this->position = 0;
@@ -286,6 +286,18 @@ class Car implements Vehicle, \ArrayAccess, \Countable, \Iterator
 		}
 		return false;
 	}
+	
+	// Methods from \IteratorAggregate
+	public function getIterator()
+	{
+		$props = array();
+		foreach ($this->iterableProperties as $propName)
+		{
+			$props[$propName] = $this->$propName;
+		}
+		$iterator = new \ArrayIterator($props);
+		return $iterator;
+	} 
 }
 
 
