@@ -312,7 +312,56 @@ function callback()
 }
 
 //$opelIterator = new \ArrayIterator($opel2);
-iterator_apply($opelObj, callback(), array($opelObj));
+//iterator_apply($opelObj, callback(), array($opelObj));
+
+// Vordefinierte Exceptions der SPL
+nl('Vordefinierte Exceptions der SPL');
+//$car = new Car('Audi', 0.0, 'blau');
+
+// Autoloading mit der SPL
+nl('Autoloading mit der SPL');
+echo spl_autoload_extensions();
+nl();
+
+//echo XML_Util::createTag('BMW', array('color' => 'blue'));
+
+dump(spl_autoload_functions());
+
+// Klassen der SPL ermitteln
+nl('Klassen der SPL ermitteln');
+$classes = spl_classes();
+echo "SPL Klassen in Ihrer PHP-Version: ";
+nl();
+foreach ($classes as $class)
+{
+	echo " * {$class}";
+	nl();
+}
+
+
+// Superklassen und Interfaces ermitteln
+nl('Superklassen und Interfaces ermitteln');
+echo "Parent Klassen:";
+nl();
+
+//dump(class_parents('AutomaticConvertible', false));
+
+echo "Interfaces:";
+nl();
+dump(class_implements('RecursiveDirectoryIterator'));
+
+// Eindeutige Obejkt ID's erzeugen
+nl('Eindeutige Obejkt ID\'s erzeugen');
+
+$status = array();
+$status[spl_object_hash($bmw)] = 'verliehen';
+
+echo $status[spl_object_hash($bmw)];
+nl();
+
+
+
+
 
 
 

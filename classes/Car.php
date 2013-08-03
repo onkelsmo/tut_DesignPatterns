@@ -65,6 +65,11 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	// Constructor
 	public function __construct($manufacturer = '', $color = '', $milage = 0, $propFile = null)
 	{
+		if (!is_int($milage))
+		{
+			throw new \InvalidArgumentException('Milage must be an integer.');
+		}
+		
 		$this->manufacturer = $manufacturer;
 		$this->color = $color;
 		$this->milage = $milage;
