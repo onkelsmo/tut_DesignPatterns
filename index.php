@@ -22,6 +22,9 @@ include 'classes/Convertible.php';
 include 'classes/AutomaticConvertible.php';
 include 'classes/Airplane.php';
 include 'classes/Driver.php';
+include 'classes/Customer.php';
+include 'classes/RentalCompany.php';
+include 'classes/RentalAction.php';
 
 include 'classes/Math.php';
 include 'classes/Invoke.php';
@@ -370,7 +373,21 @@ nl();
 echo $mazda->__toString() . "DailyRate = " . $mazda->getDailyRate(8);
 nl();
 nl();
+nl();
 
+// neuer Mietvorgang
+$bmw4 = new Car('BMW', 'blau');
+$jan = new Customer(1, 'Jan Smolka');
+$rental = new RentalAction($bmw4, $jan, '2013-10-05 17:00:00');
+
+$rental->markVehicleReturned();
+
+dump($rental);
+
+if ($rental->isReturned())
+{
+	echo "Mietvorgang abgeschlossen";
+}
 
 
 
