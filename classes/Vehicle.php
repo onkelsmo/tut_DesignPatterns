@@ -15,5 +15,7 @@ interface Vehicle
 	public function moveForward($miles);
 	public function stopEngine();
 	public function getMilage();
+	public function getDailyRate($days = 1);
+	public function __toString();
 }
 ?>

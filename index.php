@@ -358,9 +358,18 @@ $status[spl_object_hash($bmw)] = 'verliehen';
 
 echo $status[spl_object_hash($bmw)];
 nl();
+nl();
 
-
-
+// 
+echo $bmw->__toString() . "DailyRate = " . $bmw->getDailyRate();
+nl();
+nl();
+echo $airbus->__toString() . "DailyRate = " . $airbus->getDailyRate(3);
+nl();
+nl();
+echo $mazda->__toString() . "DailyRate = " . $mazda->getDailyRate(8);
+nl();
+nl();
 
 
 

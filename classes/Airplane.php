@@ -21,6 +21,26 @@ class Airplane implements Vehicle
 		$this->manufacturer = $manufacturer;
 	}
 	
+	public function __toString()
+	{
+		$string = "Instanz der Klasse Airplane<br />";
+		$string .= " +Hersteller: {$this->manufacturer}<br />";
+		$string .= " +Tachostand: {$this->milage}<br />";
+	
+		if ($this->engineStarted === true)
+		{
+			$string .= " +Der Motor läuft.<br />";
+		}
+		else
+		{
+			$string .= " +Der Motor läuft nicht.<br />";
+		}
+	
+		$string .= "<br />";
+	
+		return $string;
+	}
+	
 	public function startEngine()
 	{
 		$this->engineStarted = true;
@@ -67,6 +87,15 @@ class Airplane implements Vehicle
 	public function getMilage()
 	{
 		return $this->milage;
+	}
+	
+	public function getDailyRate($days = 1)
+	{
+		if ($days >= 7)
+		{
+			return 64.90;
+		}
+		return 75.50;
 	}
 }
 ?>

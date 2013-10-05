@@ -303,6 +303,15 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		$iterator = new \ArrayIterator($props);
 		return $iterator;
 	} 
+	
+	public function getDailyRate($days = 1)
+	{
+		if ($days >= 7)
+		{
+			return 64.90;
+		}
+		return 75.50;
+	}
 }
 
 
