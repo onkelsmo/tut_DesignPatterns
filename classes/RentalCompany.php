@@ -9,10 +9,18 @@
 **/
 namespace RentalCompany;
 
-class RentalCompany
+use Debug\Debugger;
+
+abstract class RentalCompany
 {
 	protected $fleet = array();
 	protected $rentalActions = array();
+	protected $debugger;
+	
+	public function __construct(IDebugger $debugger)
+	{
+		$this->debugger = $debugger;
+	}
 	
 	public function addToFleet($id, Vehicle $vehicle)
 	{
@@ -76,17 +84,9 @@ class RentalCompany
 		return false;
 	}
 	
-	public function debug($message)
+	protected function debug($message)
 	{
-		switch (DEBUG_MODE)
-		{
-			case 'echo':
-				echo "{$message}<br />";
-				break;
-			case 'log':
-				error_log("{$message}\n", 3, './RentalCompany.log');
-				break;
-		}
+		$this->debugger->debug($message);
 	}
 }
 ?>

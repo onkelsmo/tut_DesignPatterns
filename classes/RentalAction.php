@@ -14,8 +14,7 @@ class RentalAction
 	protected $vehicle;
 	protected $customer;
 	protected $rentDate;
-	protected $returnDate = null;
-		
+	protected $returnDate = null;	
 	
 	public function __construct(Vehicle $vehicle, Customer $customer, $date = null)
 	{

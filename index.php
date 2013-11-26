@@ -1,5 +1,7 @@
 <?php
 namespace RentalCompany;
+use RentalCompany\RentalCompany;
+
 
 /**
 *
@@ -25,10 +27,16 @@ include 'classes/Driver.php';
 include 'classes/Customer.php';
 include 'classes/RentalCompany.php';
 include 'classes/RentalAction.php';
+include 'classes/EchoingRentalCompany.php';
+include 'classes/LogginRentalCompany.php';
 
 include 'classes/Math.php';
 include 'classes/Invoke.php';
 include 'classes/Debugger.php';
+include 'classes/IDebugger.php';
+include 'classes/DebuggerEcho.php';
+include 'classes/DebuggerLog.php';
+include 'classes/DebuggerVoid.php';
 
 use MyNamespace\EmptyClass;
 
@@ -392,16 +400,50 @@ if ($rental->isReturned())
 	echo "Mietvorgang abgeschlossen";
 }
 
-nl();
-$company = new RentalCompany();
+// nl("renting");
+// $company = new RentalCompany();
+// $bmw5 = new Car('BMW', 'gruen');
+// $stephan = new Customer(1, 'Stephan Schmidt');
+// $gerd = new Customer(2, 'Gerd Schaufelberger');
+
+// $company->addToFleet('bmw5', $bmw5);
+// $company->rentVehicle($bmw5, $stephan);
+// $company->returnVehicle($bmw5);
+// $company->rentVehicle($bmw5, $gerd);
+
+nl("Added Debug modes");
+$debugger = new DebuggerEcho();
+//$debugger = new DebuggerVoid();
+
+switch (DEBUG_MODE)
+{
+	case 'echo':
+		$company = new \EchoingRentalCompany($debugger);
+		break;
+		case 'log':
+		$company = new \LoggingRentalCompany($debugger);
+		break;
+}
+
 $bmw5 = new Car('BMW', 'gruen');
 $stephan = new Customer(1, 'Stephan Schmidt');
 $gerd = new Customer(2, 'Gerd Schaufelberger');
+
+
 
 $company->addToFleet('bmw5', $bmw5);
 $company->rentVehicle($bmw5, $stephan);
 $company->returnVehicle($bmw5);
 $company->rentVehicle($bmw5, $gerd);
+
+// nl("Debugger class");
+// $debugger = new DebuggerEcho();
+
+// $debugger->debug("Danger, Will Robinson");
+nl();
+
+
+
 
 
 
