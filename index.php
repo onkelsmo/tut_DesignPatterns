@@ -32,6 +32,9 @@ include 'classes/Debugger.php';
 
 use MyNamespace\EmptyClass;
 
+define('DEBUG_MODE', 'echo');
+
+
 // Verwendung von Namespaces
 use MyNamespace\Foo;
 
@@ -382,13 +385,23 @@ $rental = new RentalAction($bmw4, $jan, '2013-10-05 17:00:00');
 
 $rental->markVehicleReturned();
 
-dump($rental);
+//dump($rental);
 
 if ($rental->isReturned())
 {
 	echo "Mietvorgang abgeschlossen";
 }
 
+nl();
+$company = new RentalCompany();
+$bmw5 = new Car('BMW', 'gruen');
+$stephan = new Customer(1, 'Stephan Schmidt');
+$gerd = new Customer(2, 'Gerd Schaufelberger');
+
+$company->addToFleet('bmw5', $bmw5);
+$company->rentVehicle($bmw5, $stephan);
+$company->returnVehicle($bmw5);
+$company->rentVehicle($bmw5, $gerd);
 
 
 
