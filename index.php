@@ -441,9 +441,29 @@ $company->rentVehicle($bmw5, $gerd);
 
 // $debugger->debug("Danger, Will Robinson");
 nl();
+nl("SQL - Classes");
+use tut_DesignPatterns\sql\Query;
+use tut_DesignPatterns\sql\FluentQuery;
+include 'sql/Query.php';
+include 'sql/FluentQuery.php';
 
 
+$query = new Query();
+$query->setTable('myTable');
+$query->setFields(array('id', 'name'));
+$query->setClause('id = 42');
 
+echo $query->buildQuery();
+nl();
+
+$query2 = new FluentQuery();
+$query2->from('myTable')->select(array('id', 'name'))->where('id = 42');
+
+echo $query2->asString();
+nl();
+
+$query3 = new FluentQuery();
+echo $query3->select(array('id', 'name'))->from('myTable')->where('id = 42')->asString();
 
 
 
