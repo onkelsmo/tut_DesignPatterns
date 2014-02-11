@@ -11,6 +11,7 @@ namespace RentalCompany;
 
 interface IDebugger
 {
+	public static function getInstance();
 	public function debug($message);
 }
 ?>

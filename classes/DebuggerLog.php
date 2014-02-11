@@ -18,6 +18,11 @@ class DebuggerLog implements IDebugger
 		$this->logger = $logger;
 	}
 	
+	public static function getInstance()
+	{
+		
+	}
+	
 	public function debug($message)
 	{
 		$this->logger->logEntry(ILogger::LEVEL_INFO, $message);

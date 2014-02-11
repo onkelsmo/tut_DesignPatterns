@@ -476,7 +476,28 @@ $company2 = new \EchoingRentalCompany($debugger2);
 $logger = new DateTimeLogger();
 $company->setLogger($logger);
 
-dump($company);
+nl();
+
+// Singleton Pattern
+$debugger3 = DebuggerEcho::getInstance();
+$debugger3->debug("Singleton Pattern Debugger");
+
+$debugger4 = DebuggerEcho::getInstance();
+$debugger4->debug("Singleton Pattern Debugger 2!");
+
+if ($debugger3 === $debugger4)
+{
+	echo "Die beiden Debugger sind dasselbe Objekt!";
+	nl();
+}
+else 
+{
+	echo "Die beiden Debugger sind nicht dasselbe Objekt!";
+	nl();
+}
+
+//dump($debugger3);
+
 
 
 
