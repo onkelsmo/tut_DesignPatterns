@@ -37,6 +37,8 @@ include 'classes/IDebugger.php';
 include 'classes/DebuggerEcho.php';
 include 'classes/DebuggerLog.php';
 include 'classes/DebuggerVoid.php';
+include 'classes/ILogger.php';
+include 'classes/DateTimeLogger.php';
 
 use MyNamespace\EmptyClass;
 
@@ -464,10 +466,17 @@ nl();
 
 $query3 = new FluentQuery();
 echo $query3->select(array('id', 'name'))->from('myTable')->where('id = 42')->asString();
+nl();
 
+// Dependency injection & Inversion of Control
+$debugger2 = new DebuggerEcho();
+$company2 = new \EchoingRentalCompany($debugger2);
 
+// used the company from row 434
+$logger = new DateTimeLogger();
+$company->setLogger($logger);
 
-
+dump($company);
 
 
 

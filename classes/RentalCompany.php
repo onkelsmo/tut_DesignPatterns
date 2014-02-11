@@ -16,6 +16,12 @@ abstract class RentalCompany
 	protected $fleet = array();
 	protected $rentalActions = array();
 	protected $debugger;
+	protected $logger;
+	
+	public function setLogger(ILogger $logger)
+	{
+		$this->logger = $logger;
+	}
 	
 	public function __construct(IDebugger $debugger)
 	{
