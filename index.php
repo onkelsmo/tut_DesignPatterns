@@ -469,7 +469,7 @@ echo $query3->select(array('id', 'name'))->from('myTable')->where('id = 42')->as
 nl();
 
 // Dependency injection & Inversion of Control
-$debugger2 = new DebuggerEcho();
+$debugger2 = new DebuggerLog();
 $company2 = new \EchoingRentalCompany($debugger2);
 
 // used the company from row 434

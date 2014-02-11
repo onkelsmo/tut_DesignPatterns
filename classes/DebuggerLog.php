@@ -11,9 +11,16 @@ namespace RentalCompany;
 
 class DebuggerLog implements IDebugger
 {
+	protected $logger;
+	
+	public function setLogger(ILogger $logger)
+	{
+		$this->logger = $logger;
+	}
+	
 	public function debug($message)
 	{
-		error_log("{$message}\n", 3, './RentalCompany.log');
+		$this->logger->logEntry(ILogger::LEVEL_INFO, $message);
 	}
 }
 ?>
