@@ -414,7 +414,7 @@ if ($rental->isReturned())
 // $company->rentVehicle($bmw5, $gerd);
 
 nl("Added Debug modes");
-$debugger = new DebuggerEcho();
+$debugger = DebuggerEcho::getInstance();
 //$debugger = new DebuggerVoid();
 
 switch (DEBUG_MODE)
