@@ -583,6 +583,15 @@ $data = array
 $list = new VehicleList(new HtmlTableFactory());
 $list->showTable($data);
 
+// TextTableFactory
+include 'classes/TextTableFactory.php';
+include 'classes/TextCell.php';
+include 'classes/TextRow.php';
+include 'classes/TextHeader.php';
+include 'classes/TextTable.php';
+
+$list = new VehicleList(new TextTableFactory());
+$list->showTable($data);
 
 
 
