@@ -535,11 +535,13 @@ include 'classes/Row.php';
 include 'classes/Header.php';
 include 'classes/Cell.php';
 include 'classes/ITableFactory.php';
+include 'classes/HtmlTableFactory.php';
 include 'classes/HtmlCell.php';
 include 'classes/HtmlRow.php';
 include 'classes/HtmlHeader.php';
 include 'classes/HtmlTable.php';
 
+// nicht schön keine factory
 $table = new HtmlTable();
 $header = new HtmlHeader();
 $header->addCell(new HtmlCell("Spalte 1"));
@@ -552,6 +554,37 @@ $row->addCell(new HtmlCell("Zeile 1 / Spalte 2"));
 $table->addRow($row);
 
 $table->display();
+
+// schön! Factory genutzt;)
+$factory = new HtmlTableFactory();
+
+$table2 = $factory->createTable();
+$header2 = $factory->createHeader();
+$header2->addCell($factory->createCell("Spalte 1"));
+$header2->addCell($factory->createCell("Spalte 2"));
+$table2->setHeader($header2);
+
+$row2 = $factory->createRow();
+$row2->addCell($factory->createCell("Zeile 1 / Spalte 1"));
+$row2->addCell($factory->createCell("Zeile 1 / Spalte 2"));
+$table2->addRow($row2);
+
+$table2->display();
+
+include 'classes/VehicleList.php';
+
+$data = array
+(
+	array('BMW', 'blau'),
+	array('Peugeot', 'rot'),
+	array('VW', 'schwarz'),
+);
+
+$list = new VehicleList(new HtmlTableFactory());
+$list->showTable($data);
+
+
+
 
 
 
