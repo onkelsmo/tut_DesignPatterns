@@ -529,6 +529,30 @@ echo "Farbe: " . $peugeot2->color;
 nl();
 nl();
 
+// Abstract Factory Pattern
+include 'classes/Table.php';
+include 'classes/Row.php';
+include 'classes/Header.php';
+include 'classes/Cell.php';
+include 'classes/ITableFactory.php';
+include 'classes/HtmlCell.php';
+include 'classes/HtmlRow.php';
+include 'classes/HtmlHeader.php';
+include 'classes/HtmlTable.php';
+
+$table = new HtmlTable();
+$header = new HtmlHeader();
+$header->addCell(new HtmlCell("Spalte 1"));
+$header->addCell(new HtmlCell("Spalte 2"));
+$table->setHeader($header);
+
+$row = new HtmlRow();
+$row->addCell(new HtmlCell("Zeile 1 / Spalte 1"));
+$row->addCell(new HtmlCell("Zeile 1 / Spalte 2"));
+$table->addRow($row);
+
+$table->display();
+
 
 
 
