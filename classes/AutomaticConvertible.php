@@ -9,7 +9,7 @@
 **/
 namespace RentalCompany;
 
-Class AutomaticConvertible extends Convertible
+class AutomaticConvertible extends Convertible
 {
 	public $ignited = false;
 	

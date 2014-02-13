@@ -40,6 +40,10 @@ include 'classes/DebuggerVoid.php';
 include 'classes/ILogger.php';
 include 'classes/DateTimeLogger.php';
 
+include 'classes/AbstractManufacturer.php';
+include 'classes/CarManufacturer.php';
+include 'classes/ConvertibleManufacturer.php';
+
 use MyNamespace\EmptyClass;
 
 define('DEBUG_MODE', 'echo');
@@ -495,9 +499,35 @@ else
 	echo "Die beiden Debugger sind nicht dasselbe Objekt!";
 	nl();
 }
-
 //dump($debugger3);
+nl();
 
+// Factory Pattern
+$bmwManufacturer = new CarManufacturer('BMW');
+$bmw6 = $bmwManufacturer->sellVehicle('blau');
+
+echo "Neues Fahrzeug gekauft:";
+nl();
+echo "Fahrzeugtyp: " . get_class($bmw6);
+nl();
+echo "Hersteller: " . $bmw6->manufacturer;
+nl();
+echo "Farbe: " . $bmw6->color;
+nl();
+nl();
+
+$peugeorManufacturer = new ConvertibleManufacturer('Peugeot');
+$peugeot2 = $peugeorManufacturer->sellVehicle('rot');
+
+echo "Neues Fahrzeug gekauft:";
+nl();
+echo "Fahrzeugtyp: " . get_class($peugeot2);
+nl();
+echo "Hersteller: " . $peugeot2->manufacturer;
+nl();
+echo "Farbe: " . $peugeot2->color;
+nl();
+nl();
 
 
 
