@@ -33,7 +33,9 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	);
 	private $position = 0;
 	
-	
+	protected $airConditioned = false;
+	protected $graphics = null;
+
 	// Properties
 	public function __get($property)
 	{
@@ -43,7 +45,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			$this->loadTechnicalDetails();
 		}
-		// Überprüfen, ob das technische Detail in der INI-Datei spezifiziert wurde.
+		// ÃœberprÃ¼fen, ob das technische Detail in der INI-Datei spezifiziert wurde.
 		if (isset($this->techDetails[$property]))
 		{
 			return $this->techDetails[$property];
@@ -62,6 +64,30 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		//$this->saveTechnicalDetails();
 	}
 	
+	public function setGraphics($graphics) {
+		$this->graphics = $graphics;
+	}
+	
+	public function setAirConditioned($airConditioned) {
+		$this->airConditioned = $airConditioned;
+	}
+	
+	public function getGraphics() {
+		return $this->graphics;
+	}
+
+	public function hasAirCondition() {
+		return $this->airConditioned;
+	}
+	
+	public function getManufacturer() {
+		return $this->manufacturer;
+	}
+	
+	public function getColor() {
+		return $this->color;
+	}
+
 	// Constructor
 	public function __construct($manufacturer = '', $color = '', $milage = 0, $propFile = null)
 	{
@@ -98,13 +124,13 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	public function __call($method, $args)
 	{
 		echo "Die Methode {$method} wurde aufgerufen.<br />";
-		// Überprüfen, ob Argumente ausgegeben wurden.
+		// ÃœberprÃ¼fen, ob Argumente ausgegeben wurden.
 		if (empty($args))
 		{
-			echo "Es wurden keine Argumente übergeben.<br />";
+			echo "Es wurden keine Argumente &uuml;bergeben.<br />";
 			return;
 		}
-		echo "Übergebene Argumente:<br />";
+		echo "Ãœbergebene Argumente:<br />";
 		$no = 1;
 		foreach ($args as $arg)
 		{
@@ -122,11 +148,11 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		
 		if ($this->engineStartet === true)
 		{
-			$string .= " +Der Motor läuft.<br />";
+			$string .= " +Der Motor lÃ¤uft.<br />";
 		}
 		else 
 		{
-			$string .= " +Der Motor läuft nicht.<br />";
+			$string .= " +Der Motor lÃ¤uft nicht.<br />";
 		}
 		
 		$string .= "<br />";
@@ -196,8 +222,8 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			return;
 		}
-		// Geänderten Inhalt der INI-Datei erzeugen.
-		$ini = "; Technische Details für {$this->manufacturer}\n";
+		// GeÃ¤nderten Inhalt der INI-Datei erzeugen.
+		$ini = "; Technische Details fÃ¼r {$this->manufacturer}\n";
 		foreach ($this->techDetails as $property => $value)
 		{
 			$ini .= "{$property} = \"{$value}\"\n";
@@ -213,7 +239,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			$this->loadTechnicalDetails();
 		}
-		// Überprüfen, ob der Wert vorhanden ist.
+		// ÃœberprÃ¼fen, ob der Wert vorhanden ist.
 		return isset($this->techDetails[$offset]);
 	}
 	
@@ -224,7 +250,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			$this->loadTechnicalDetails();
 		}
-		// Wert zurück geben
+		// Wert zurÃ¼ck geben
 		return $this->techDetails[$offset];
 	}
 	
@@ -235,7 +261,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			$this->loadTechnicalDetails();
 		}
-		// Wert im Array ändern.
+		// Wert im Array Ã¤ndern.
 		$this->techDetails[$offset] = $value;
 	}
 	
@@ -246,7 +272,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		{
 			$this->loadTechnicalDetails();
 		}
-		// Wert aus dem Array löschen
+		// Wert aus dem Array lÃ¶schen
 		unset($this->techDetails[$offset]);
 	}
 	

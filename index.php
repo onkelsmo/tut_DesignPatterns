@@ -109,7 +109,7 @@ $airbus->startEngine();
 $airbus->moveForward(10000);
 $airbus->stopEngine();
 
-// MoveForward funktion für Vehicles (Entwicklung gegen das Interface 'Vehicle')
+// MoveForward funktion fï¿½r Vehicles (Entwicklung gegen das Interface 'Vehicle')
 function moveForward(Vehicle $vehicle, $miles)
 {
 		$vehicle->startEngine();
@@ -213,7 +213,7 @@ $bmw3->openRoof();
 
 printf("24 - 8 = %d\n", Math::substract(24,8));
 nl();
-printf("24 / 8 = %d\n", Math::divide(24,8));
+//printf("24 / 8 = %d\n", Math::divide(24,8));
 nl();
 
 // __toString()
@@ -310,7 +310,7 @@ echo 'Elemente im \DirectoryIterator mit iterator_count = ' . iterator_count($di
 nl();
 // iterator_to_array
 nl('iterator_to_array');
-// Daten für den Iterator
+// Daten fï¿½r den Iterator
 $opel2 = array
 		(
 			'manufacturer'	=>	'Opel',
@@ -541,7 +541,7 @@ include 'classes/HtmlRow.php';
 include 'classes/HtmlHeader.php';
 include 'classes/HtmlTable.php';
 
-// nicht schön keine factory
+// nicht schï¿½n keine factory
 $table = new HtmlTable();
 $header = new HtmlHeader();
 $header->addCell(new HtmlCell("Spalte 1"));
@@ -555,7 +555,7 @@ $table->addRow($row);
 
 $table->display();
 
-// schön! Factory genutzt;)
+// schï¿½n! Factory genutzt;)
 $factory = new HtmlTableFactory();
 
 $table2 = $factory->createTable();
@@ -594,6 +594,50 @@ $list = new VehicleList(new TextTableFactory());
 $list->showTable($data);
 
 
+// Prototype Pattern
+nl("Prototype Pattern");
+nl();
+include './classes/SpecialEditionManufacturer.php';
+
+$manufacturer = new SpecialEditionManufacturer();
+
+$golfElvis = new Car('VW', 'silber');
+$golfElvis->setAirConditioned(true);
+$golfElvis->setGraphics('Gitarre');
+
+var_dump($golfElvis);
+
+$manufacturer->addSpecialEdition('Golf Elvis Presley Edition', $golfElvis);
+
+$mygolf1 = $manufacturer->manufactureVehicle('Golf Elvis Presley Edition');
+echo "Typ		: ", get_class($mygolf1), "<br />";
+echo "Hersteller: {$mygolf1->getManufacturer()}<br />";
+echo "Farbe		: {$mygolf1->getColor()}<br />";
+echo "Grafiken	: {$mygolf1->getGraphics()}<br />";
+echo "Klima		: ", $mygolf1->hasAirCondition() ? "ja" : "nein", "<br />";
+
+$golfStones = new AutomaticConvertible('VW', 'rot');
+$golfStones->setAirConditioned(false);
+$golfStones->setGraphics('Zunge');
+
+nl();
+
+$manufacturer->addSpecialEdition('Golf Rolling Stones Edition', $golfStones);
+$mygolf2 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
+echo "Typ		: ", get_class($mygolf2), "<br />";
+echo "Hersteller: {$mygolf2->getManufacturer()}<br />";
+echo "Farbe		: {$mygolf2->getColor()}<br />";
+echo "Grafiken	: {$mygolf2->getGraphics()}<br />";
+echo "Klima		: ", $mygolf2->hasAirCondition() ? "ja" : "nein", "<br />";
+
+$mygolf3 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
+nl();
+if($mygolf2 !== $mygolf3) {
+	echo "\$mygolf2 ist nicht identisch mit \$mygolf3";
+}
+nl();
+
+$golf4 = $manufacturer->manufactureVehicle('Golf Ray Charles Edition');
 
 
 
@@ -601,12 +645,3 @@ $list->showTable($data);
 
 
 
-
-
-
-
-
-
-
-
-?>
