@@ -35,6 +35,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	
 	protected $airConditioned = false;
 	protected $graphics = null;
+	protected $airCondition;
 
 	// Properties
 	public function __get($property)
@@ -87,6 +88,14 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	public function getColor() {
 		return $this->color;
 	}
+	
+	public function setAirCondition(AirCondition $airCondition) {
+		$this->airCondition = $airCondition;
+	}
+	
+	public function getAirCondition() {
+		return $this->airCondition;
+	}
 
 	// Constructor
 	public function __construct($manufacturer = '', $color = '', $milage = 0, $propFile = null)
@@ -117,7 +126,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	
 	public function __clone()
 	{
-		$this->milage = 0;
+		$this->setAirCondition(clone $this->getAirCondition());
 	}
 	
 	// Interceptors

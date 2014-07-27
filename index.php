@@ -139,10 +139,10 @@ echo "5 * 3 = ".BizarroMath::multiply(5, 3);
 nl();
 
 // Referenzen und Klone
-echo "Referenzen und Klone";
-nl();
-$bmw2 = clone $bmw;
-dump($bmw2);
+//echo "Referenzen und Klone";
+//nl();
+//$bmw2 = clone $bmw;
+//dump($bmw2);
 
 // Namespaces
 $audi = new Car('Audi', 'black');
@@ -607,41 +607,65 @@ $golfElvis->setGraphics('Gitarre');
 
 var_dump($golfElvis);
 
-$manufacturer->addSpecialEdition('Golf Elvis Presley Edition', $golfElvis);
+//$manufacturer->addSpecialEdition('Golf Elvis Presley Edition', $golfElvis);
+//
+//$mygolf1 = $manufacturer->manufactureVehicle('Golf Elvis Presley Edition');
+//echo "Typ		: ", get_class($mygolf1), "<br />";
+//echo "Hersteller: {$mygolf1->getManufacturer()}<br />";
+//echo "Farbe		: {$mygolf1->getColor()}<br />";
+//echo "Grafiken	: {$mygolf1->getGraphics()}<br />";
+//echo "Klima		: ", $mygolf1->hasAirCondition() ? "ja" : "nein", "<br />";
+//
+//$golfStones = new AutomaticConvertible('VW', 'rot');
+//$golfStones->setAirConditioned(false);
+//$golfStones->setGraphics('Zunge');
+//
+//nl();
+//
+//$manufacturer->addSpecialEdition('Golf Rolling Stones Edition', $golfStones);
+//$mygolf2 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
+//echo "Typ		: ", get_class($mygolf2), "<br />";
+//echo "Hersteller: {$mygolf2->getManufacturer()}<br />";
+//echo "Farbe		: {$mygolf2->getColor()}<br />";
+//echo "Grafiken	: {$mygolf2->getGraphics()}<br />";
+//echo "Klima		: ", $mygolf2->hasAirCondition() ? "ja" : "nein", "<br />";
+//
+//$mygolf3 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
+//nl();
+//if($mygolf2 !== $mygolf3) {
+//	echo "\$mygolf2 ist nicht identisch mit \$mygolf3";
+//}
+//nl();
+//
+//try {
+//	$golf4 = $manufacturer->manufactureVehicle('Golf Ray Charles Edition');
+//} catch (\Exception $e) {
+//	echo $e->getMessage();
+//}
+//nl();
 
-$mygolf1 = $manufacturer->manufactureVehicle('Golf Elvis Presley Edition');
-echo "Typ		: ", get_class($mygolf1), "<br />";
-echo "Hersteller: {$mygolf1->getManufacturer()}<br />";
-echo "Farbe		: {$mygolf1->getColor()}<br />";
-echo "Grafiken	: {$mygolf1->getGraphics()}<br />";
-echo "Klima		: ", $mygolf1->hasAirCondition() ? "ja" : "nein", "<br />";
+include './classes/AirCondition.php';
 
-$golfStones = new AutomaticConvertible('VW', 'rot');
-$golfStones->setAirConditioned(false);
-$golfStones->setGraphics('Zunge');
+$manufacturer2 = new SpecialEditionManufacturer();
+
+$golfElvis = new Car('VW', 'silber');
+$golfElvis->setAirCondition(new AirCondition());
+$golfElvis->setGraphics('Gitarre');
+
+$manufacturer2->addSpecialEdition('Golf Elvis Edition', $golfElvis);
+
+$golf1 = $manufacturer2->manufactureVehicle('Golf Elvis Edition');
+$golf2 = $manufacturer2->manufactureVehicle('Golf Elvis Edition');
 
 nl();
+echo "Einstellung in \$golf1: ", $golf1->getAirCondition()->getDegrees(), "<br />";
+echo "Einstellung in \$golf2: ", $golf2->getAirCondition()->getDegrees(), "<br />";
 
-$manufacturer->addSpecialEdition('Golf Rolling Stones Edition', $golfStones);
-$mygolf2 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
-echo "Typ		: ", get_class($mygolf2), "<br />";
-echo "Hersteller: {$mygolf2->getManufacturer()}<br />";
-echo "Farbe		: {$mygolf2->getColor()}<br />";
-echo "Grafiken	: {$mygolf2->getGraphics()}<br />";
-echo "Klima		: ", $mygolf2->hasAirCondition() ? "ja" : "nein", "<br />";
+$golf1->getAirCondition()->setDegrees(16);
 
-$mygolf3 = $manufacturer->manufactureVehicle('Golf Rolling Stones Edition');
+echo "Einstellung in \$golf1: ", $golf1->getAirCondition()->getDegrees(), "<br />";
+echo "Einstellung in \$golf2: ", $golf2->getAirCondition()->getDegrees(), "<br />";
+
+echo spl_object_hash($golf1->getAirCondition());
 nl();
-if($mygolf2 !== $mygolf3) {
-	echo "\$mygolf2 ist nicht identisch mit \$mygolf3";
-}
-nl();
-
-$golf4 = $manufacturer->manufactureVehicle('Golf Ray Charles Edition');
-
-
-
-
-
-
-
+echo spl_object_hash($golf2->getAirCondition());
