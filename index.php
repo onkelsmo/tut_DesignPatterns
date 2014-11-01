@@ -669,3 +669,33 @@ echo "Einstellung in \$golf2: ", $golf2->getAirCondition()->getDegrees(), "<br /
 echo spl_object_hash($golf1->getAirCondition());
 nl();
 echo spl_object_hash($golf2->getAirCondition());
+nl();
+
+// Composite Pattern
+use \Debug\DebuggerComposite;
+include './classes/DebuggerComposite.php';
+
+$debuggerLog = DebuggerLog::getInstance('log/debug.log');
+$debuggerEcho = DebuggerEcho::getInstance();
+
+$composite = new DebuggerComposite();
+$composite->addDebugger($debuggerLog);
+$composite->addDebugger($debuggerEcho);
+
+$debuggerEcho->debug('Nur ausgeben.');
+$debuggerLog->debug('Nur in die Datei schreiben.');
+$composite->debug('Ausgeben und in die Datei schreiben.');
+
+$debuggerLog1 = DebuggerLog::getInstance('log/debug1.log');
+$debuggerLog2 = DebuggerLog::getInstance('log/debug2.log');
+$debuggerEcho = DebuggerEcho::getInstance();
+
+$compositeLog = new DebuggerComposite();
+$compositeLog->addDebugger($debuggerLog1);
+$compositeLog->addDebugger($debuggerLog2);
+
+$composite = new DebuggerComposite();
+$composite->addDebugger($compositeLog);
+$composite->addDebugger($debuggerEcho);
+
+$composite->debug("Hello World!");
