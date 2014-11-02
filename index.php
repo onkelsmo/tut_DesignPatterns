@@ -672,6 +672,9 @@ echo spl_object_hash($golf2->getAirCondition());
 nl();
 
 // Composite Pattern
+nl('Composite Pattern');
+nl();
+
 use \Debug\DebuggerComposite;
 include './classes/DebuggerComposite.php';
 
@@ -699,3 +702,39 @@ $composite->addDebugger($compositeLog);
 $composite->addDebugger($debuggerEcho);
 
 $composite->debug("Hello World!");
+nl();
+
+// Adapter Pattern
+nl('<b>Adapter Pattern</b>');
+
+include './classes/Automobile.php';
+use \net\schst\Automobile;
+
+nl('Automobile Class');
+$bmw = new Automobile('blau', 'BMW');
+$bmw->pluginKey();
+$bmw->ignite();
+$bmw->drive(Automobile::DIRECTION_FORWARD, 500);
+$bmw->removeKey();
+$bmw->stopIgnition();
+
+printf("Hersteller: %s", $bmw->getInfo(Automobile::INFO_MANUFACTURER));
+nl();
+printf("Farbe: %s", $bmw->getInfo(Automobile::INFO_COLOR));
+nl();
+printf("Kilometerstand: %d km", $bmw->getMilesDriven());
+nl();
+
+nl('Car Class');
+$bmw = new Car('BMW', 'blau');
+$bmw->startEngine();
+$bmw->moveForward(500);
+$bmw->stopEngine();
+
+printf("Hersteller: %s", $bmw->getManufacturer());
+nl();
+printf("Farbe: %s", $bmw->getColor());
+nl();
+printf("Kilometerstand: %d km", $bmw->getMilage());
+nl();
+
