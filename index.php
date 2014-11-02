@@ -738,3 +738,20 @@ nl();
 printf("Kilometerstand: %d km", $bmw->getMilage());
 nl();
 
+include './classes/AutomobileAdapter.php';
+
+$bmw = new Automobile('blau', 'BMW');
+$car = new AutomobileAdapter($bmw);
+
+$car->startEngine();
+$car->moveForward(500);
+$car->stopEngine();
+
+nl("Werte der AutomobileAdapter Instanz");
+
+printf("Hersteller: %s", $car->getManufacturer());
+nl();
+printf("Farbe: %s", $car->getColor());
+nl();
+printf("Kilometerstand: %d km", $car->getMilage());
+nl();
