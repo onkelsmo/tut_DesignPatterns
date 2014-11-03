@@ -776,4 +776,23 @@ nl();
 printf("Kosten pro Tag: %d", $rioPio->getDailyRate());
 nl();
 
+include './classes/VehicleDecorator.php';
+include './classes/VehicleDecoratorSpoiler.php';
+
+$rioPio = new Car('KIA', 'black', 0, null, 180);
+$mitSpoiler = new VehicleDecoratorSpoiler($rioPio);
+
+printf("H&ouml;chstgeschwindigkeit mit Spoiler: %d", $mitSpoiler->getMaxSpeed());
+nl();
+printf("Kosten pro Tag: %d", $mitSpoiler->getDailyRate());
+nl();
+
+include './classes/VehicleDecoratorWideTyres.php';
+
+$mitSpoilerUndReifen = new VehicleDecoratorWideTyres($mitSpoiler);
+
+printf("H&ouml;chstgeschwindigkeit mit Spoiler und Breitreifen: %d", $mitSpoilerUndReifen->getMaxSpeed());
+nl();
+printf("Kosten pro Tag: %d", $mitSpoilerUndReifen->getDailyRate());
+nl();
 
