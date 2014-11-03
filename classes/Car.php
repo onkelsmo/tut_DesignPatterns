@@ -36,6 +36,9 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	protected $airConditioned = false;
 	protected $graphics = null;
 	protected $airCondition;
+	
+	protected $maxSpeed;
+	protected $extras = array();
 
 	// Properties
 	public function __get($property)
@@ -98,7 +101,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	}
 
 	// Constructor
-	public function __construct($manufacturer = '', $color = '', $milage = 0, $propFile = null)
+	public function __construct($manufacturer = '', $color = '', $milage = 0, $propFile = null, $maxSpeed = 100)
 	{
 		if (!is_int($milage))
 		{
@@ -109,6 +112,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 		$this->color = $color;
 		$this->milage = $milage;
 		$this->propFile = $propFile;
+		$this->maxSpeed = $maxSpeed;
 		
 		$this->driver = new Driver('Stephan');
 	}
@@ -343,18 +347,24 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	{
 		if ($days >= 7)
 		{
-			return 64.90;
+			$rate = 65.90;
 		}
-		return 75.50;
+		$rate = 75.50;
+		foreach ($this->extras as $extra) {
+			$rate = $rate + $extra->getAdditionalRate();
+		}
+		return $rate;
+	}
+
+	public function getMaxSpeed() {
+		$speed = $this->maxSpeed;
+		foreach ($this->extras as $extra) {
+			$speed = $speed + $extra->getAdditionalSpeed();
+		}
+		return $speed;
+	}
+	
+	public function addExtra(CarExtra $extra) {
+		$this->extras[] = $extra;
 	}
 }
-
-
-
-
-
-
-
-
-
-?>

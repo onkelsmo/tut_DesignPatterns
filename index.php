@@ -755,3 +755,25 @@ printf("Farbe: %s", $car->getColor());
 nl();
 printf("Kilometerstand: %d km", $car->getMilage());
 nl();
+
+// Decorator Pattern
+nl("<b>Decorator Pattern</b>");
+include './classes/CarExtra.php';
+include './classes/Spoiler.php';
+
+$rioPio = new Car('Kia', 'black', 0, null, 180);
+
+printf("H&ouml;chstgeschwindigkeit ohne Spoiler %d", $rioPio->getMaxSpeed());
+nl();
+printf("Kosten pro Tag: %d", $rioPio->getDailyRate());
+nl();
+
+$spoiler = new Spoiler();
+$rioPio->addExtra($spoiler);
+
+printf("H&ouml;chstgeschwindigkeit mit Spoiler %d", $rioPio->getMaxSpeed());
+nl();
+printf("Kosten pro Tag: %d", $rioPio->getDailyRate());
+nl();
+
+

@@ -17,5 +17,5 @@ interface Vehicle
 	public function getMilage();
 	public function getDailyRate($days = 1);
 	public function __toString();
+	public function getMaxSpeed();
 }
-?>

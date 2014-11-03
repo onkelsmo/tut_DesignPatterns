@@ -57,5 +57,10 @@ class AutomobileAdapter implements Vehicle {
 	public function getColor() {
 		return $this->automobile->getInfo(Automobile::INFO_COLOR);
 	}
+
+	public function getMaxSpeed() {
+		return $this->automobile->getMaxSpeed();
+	}
+
 }
 

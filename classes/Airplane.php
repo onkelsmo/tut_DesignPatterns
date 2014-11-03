@@ -15,7 +15,9 @@ class Airplane implements Vehicle
 	protected $altitude = 0;
 	protected $milage = 0;
 	protected $engineStarted = false;
-	
+	protected $maxSpeed = 1000;
+
+
 	public function __construct($manufacturer)
 	{
 		$this->manufacturer = $manufacturer;
@@ -29,11 +31,11 @@ class Airplane implements Vehicle
 	
 		if ($this->engineStarted === true)
 		{
-			$string .= " +Der Motor läuft.<br />";
+			$string .= " +Der Motor lï¿½uft.<br />";
 		}
 		else
 		{
-			$string .= " +Der Motor läuft nicht.<br />";
+			$string .= " +Der Motor lï¿½uft nicht.<br />";
 		}
 	
 		$string .= "<br />";
@@ -97,5 +99,8 @@ class Airplane implements Vehicle
 		}
 		return 75.50;
 	}
+
+	public function getMaxSpeed() {
+		return $this->maxSpeed;
+	}
 }
-?>
