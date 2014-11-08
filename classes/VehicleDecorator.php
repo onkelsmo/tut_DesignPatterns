@@ -42,5 +42,8 @@ abstract class VehicleDecorator implements Vehicle {
 		return $this->vehicle->stopEngine();
 	}
 
+	public function __call($method, $args) {
+		return call_user_func_array(array($this->vehicle, $method), $args);
+	}
 }
 

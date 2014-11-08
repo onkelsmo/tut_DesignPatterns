@@ -763,6 +763,7 @@ include './classes/Spoiler.php';
 
 $rioPio = new Car('Kia', 'black', 0, null, 180);
 
+nl("Ohne alles");
 printf("H&ouml;chstgeschwindigkeit ohne Spoiler %d", $rioPio->getMaxSpeed());
 nl();
 printf("Kosten pro Tag: %d", $rioPio->getDailyRate());
@@ -771,6 +772,7 @@ nl();
 $spoiler = new Spoiler();
 $rioPio->addExtra($spoiler);
 
+nl("Mit Spoiler");
 printf("H&ouml;chstgeschwindigkeit mit Spoiler %d", $rioPio->getMaxSpeed());
 nl();
 printf("Kosten pro Tag: %d", $rioPio->getDailyRate());
@@ -782,6 +784,7 @@ include './classes/VehicleDecoratorSpoiler.php';
 $rioPio = new Car('KIA', 'black', 0, null, 180);
 $mitSpoiler = new VehicleDecoratorSpoiler($rioPio);
 
+nl("Mit Spoiler &uuml;ber extra decorator");
 printf("H&ouml;chstgeschwindigkeit mit Spoiler: %d", $mitSpoiler->getMaxSpeed());
 nl();
 printf("Kosten pro Tag: %d", $mitSpoiler->getDailyRate());
@@ -789,10 +792,32 @@ nl();
 
 include './classes/VehicleDecoratorWideTyres.php';
 
+nl("Mit Spoiler und Breitreifen");
 $mitSpoilerUndReifen = new VehicleDecoratorWideTyres($mitSpoiler);
 
 printf("H&ouml;chstgeschwindigkeit mit Spoiler und Breitreifen: %d", $mitSpoilerUndReifen->getMaxSpeed());
 nl();
 printf("Kosten pro Tag: %d", $mitSpoilerUndReifen->getDailyRate());
 nl();
+
+include './classes/VehicleDecoratorLowrider.php';
+
+$mitSpoilerUndReifenUndLowrider = new VehicleDecoratorLowrider($mitSpoilerUndReifen);
+
+nl("Mit Spoiler, Breitreifen und Lowrider!");
+printf("Kosten pro Tag: %d", $mitSpoilerUndReifenUndLowrider->getDailyRate());
+nl();
+
+$mitSpoilerUndReifenUndLowrider->moveDown(10);
+printf("Inch &uumlber dem Boden: %d", $mitSpoilerUndReifenUndLowrider->getHeight());
+
+// Problem with decorator -> throws error when no __call method is implemented in abstract class
+
+$rioLein = new Car('Rio', 'schwarz', 0, null, 180);
+$lowrider = new VehicleDecoratorLowrider($rioLein);
+$spoiler = new VehicleDecoratorSpoiler($lowrider);
+
+$spoiler->moveDown(10);
+
+dump($spoiler);
 
