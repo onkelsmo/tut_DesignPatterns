@@ -424,7 +424,7 @@ $debugger = DebuggerEcho::getInstance();
 switch (DEBUG_MODE)
 {
 	case 'echo':
-		$company = new \EchoingRentalCompany($debugger);
+		$company = new EchoingRentalCompany($debugger);
 		break;
 		case 'log':
 		$company = new \LoggingRentalCompany($debugger);
@@ -474,7 +474,7 @@ nl();
 
 // Dependency injection & Inversion of Control
 $debugger2 = new DebuggerLog();
-$company2 = new \EchoingRentalCompany($debugger2);
+$company2 = new EchoingRentalCompany($debugger2);
 
 // used the company from row 434
 $logger = new DateTimeLogger();
@@ -875,6 +875,39 @@ nl();
 //printf("%.2f EUR sind umgerechnet %.2fUS$", $euro, $dollar);
 //nl();
 
+nl("<b>Facade Pattern</b>");
+nl("Vorbereitung");
+include './classes/IdCreator.php';
+
+//$debugger = new DebuggerEcho();
+$company = new EchoingRentalCompany($debugger);
+
+$rioManufacturer = new CarManufacturer("RIO");
+$car = $rioManufacturer->sellVehicle('schwarz');
+$id = IdCreator::getInstance()->getNextId();
+$company->addToFleet($id, $car);
+
+$hyundaiManufacturer = new ConvertibleManufacturer("HYUNDAI");
+$car = $hyundaiManufacturer->sellVehicle('braun');
+$id = IdCreator::getInstance()->getNextId();
+$company->addToFleet($id, $car);
+
+dump($company);
+
+include './classes/PurchasingFacade.php';
+
+$company = new EchoingRentalCompany($debugger);
+$bmwManufacturer = new CarManufacturer("BMW");
+$peugeorManufacturer = new ConvertibleManufacturer("Peugeot");
+
+$facade = new PurchasingFacade($company);
+$facade->addManufacturers('bmw', $bmwManufacturer);
+$facade->addManufacturers('peugeot', $peugeorManufacturer);
+
+$facade->purchase('bmw', 'rot');
+$facade->purchase('peugeot', 'blau');
+
+var_dump($facade);
 
 
 

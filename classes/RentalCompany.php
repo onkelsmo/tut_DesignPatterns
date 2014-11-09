@@ -84,7 +84,7 @@ abstract class RentalCompany
 				continue;
 			}
 			$rentalAction->markVehicleReturned();
-			$this->debug("Rückgabe: " . $rentalAction->getCustomer()->getName() . " gibt " . $vehicle->manufacturer. " zur&uuml;ck.");
+			$this->debug("Rï¿½ckgabe: " . $rentalAction->getCustomer()->getName() . " gibt " . $vehicle->manufacturer. " zur&uuml;ck.");
 			return true;
 		}
 		return false;

@@ -7,6 +7,8 @@
 * @since 26.11.2013
 *
 **/
+namespace RentalCompany;
+
 use RentalCompany\RentalCompany;
 
 class EchoingRentalCompany extends RentalCompany
@@ -16,5 +18,3 @@ class EchoingRentalCompany extends RentalCompany
 		$this->debugger->debug($message);
 	}
 }
-
-?>
