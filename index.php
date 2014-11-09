@@ -821,3 +821,60 @@ $spoiler->moveDown(10);
 
 dump($spoiler);
 
+nl("<b>Proxy Pattern</b>");
+nl("Schutz Proxy");
+nl();
+include './classes/MilageLimitExceededException.php';
+include './classes/VehicleProxy.php';
+include './classes/PrepaidVehicleProxy.php';
+
+$bmw = new Car("BMW", "Rot", 0, null, 180);
+$proxy = new PrepaidVehicleProxy($bmw, 500);
+
+$proxy->startEngine();
+
+try {
+	$proxy->moveForward(400);
+	echo "Erfolgreich 400km gefahren.";
+	nl();
+	$proxy->moveForward(300);
+	echo "Erfolgreich 300km gefahren.";
+	nl();
+} catch (MilageLimitExceededException $e) {
+	echo $e->getMessage();
+	nl();
+}
+
+echo "Kilometerstand: {$proxy->getMilage()}km";
+nl();
+$proxy->stopEngine();
+
+nl("Remote Proxy");
+include './classes/RateConverter.php';
+
+$converter = new RateConverter();
+$rate = $converter->getRate('usa');
+
+echo "Umrechnungskurs: {$rate}";
+nl();
+$euro = 75;
+$dollar = $euro * $rate;
+
+printf("%.2f EUR sind umgerechnet %.2fUS$", $euro, $dollar);
+nl();
+
+// !!! NOT WORKING BECAUSE SOAP URL IS NOT LONGER SUPPORTED !!!
+//$proxy = new \SoapClient('http://www.xmethods.net/sd/2001/CurrencyExchangeService.wsdl');
+//$rate = $proxy->getRate('euro', 'usa');
+//
+//echo "Umrechnungskurz: {$rate}";
+//nl();
+//$euro = 75;
+//$dollar = $euro * $rate;
+//
+//printf("%.2f EUR sind umgerechnet %.2fUS$", $euro, $dollar);
+//nl();
+
+
+
+
