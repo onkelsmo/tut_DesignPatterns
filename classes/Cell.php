@@ -9,15 +9,6 @@
 **/
 namespace RentalCompany;
 
-abstract class Cell
-{
-	protected $content = null;
-	
-	public function __construct($content)
-	{
-		$this->content = $content;
-	}
-	
-	abstract public function display();
+abstract class Cell {
+	abstract public function display($data);
 }
-?>

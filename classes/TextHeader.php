@@ -9,17 +9,13 @@
 **/
 namespace RentalCompany;
 
-class TextHeader extends Header
-{
-	public function display()
-	{
-		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+\n";
-		foreach ($this->cells as $cell)
-		{
+class TextHeader extends Header {
+	public function display() {
+		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+<br />";
+		foreach ($this->cells as $cell) {
 			$cell->display();
 		}
-		echo "|\n";
-		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+\n";
+		echo "|<br />";
+		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+<br />";
 	}
 }
-?>

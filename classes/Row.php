@@ -9,15 +9,17 @@
 **/
 namespace RentalCompany;
 
-abstract class Row
-{
+abstract class Row {
+	protected $cell;
 	protected $cells = array();
 	
-	public function addCell(Cell $cell)
-	{
+	public function __construct(Cell $cell) {
+		$this->cell = $cell;
+	}
+	
+	public function addCell($cell) {
 		$this->cells[] = $cell;
 	}
 	
 	abstract public function display();
 }
-?>

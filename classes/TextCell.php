@@ -9,11 +9,8 @@
 **/
 namespace RentalCompany;
 
-class TextCell extends Cell
-{
-	public function display()
-	{
-		echo "|" . str_pad($this->content, 20);
+class TextCell extends Cell {
+	public function display($data) {
+		echo "|" . str_pad($data, 20);
 	}
 }
-?>

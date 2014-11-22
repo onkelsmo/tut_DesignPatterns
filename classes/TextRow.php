@@ -9,16 +9,12 @@
 **/
 namespace RentalCompany;
 
-class TextRow extends Row
-{
-	public function display()
-	{
-		foreach ($this->cells as $cell)
-		{
-			$cell->display();
+class TextRow extends Row {
+	public function display() {
+		foreach ($this->cells as $data) {
+			$this->cell->display($data);
 		}
-		echo "|\n";
-		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+\n";
+		echo "|<br />";
+		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+<br />";
 	}
 }
-?>

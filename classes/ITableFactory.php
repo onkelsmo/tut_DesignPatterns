@@ -9,11 +9,9 @@
 **/
 namespace RentalCompany;
 
-interface ITableFactory
-{
+interface ITableFactory {
 	public function createTable();
 	public function createRow();
 	public function createHeader();
-	public function createCell($content);
+	public function createCell();
 }
-?>

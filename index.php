@@ -541,19 +541,19 @@ include 'classes/HtmlRow.php';
 include 'classes/HtmlHeader.php';
 include 'classes/HtmlTable.php';
 
-// nicht sch�n keine factory
-$table = new HtmlTable();
-$header = new HtmlHeader();
-$header->addCell(new HtmlCell("Spalte 1"));
-$header->addCell(new HtmlCell("Spalte 2"));
-$table->setHeader($header);
-
-$row = new HtmlRow();
-$row->addCell(new HtmlCell("Zeile 1 / Spalte 1"));
-$row->addCell(new HtmlCell("Zeile 1 / Spalte 2"));
-$table->addRow($row);
-
-$table->display();
+//// nicht sch�n keine factory
+//$table = new HtmlTable();
+//$header = new HtmlHeader();
+//$header->addCell(new HtmlCell("Spalte 1"));
+//$header->addCell(new HtmlCell("Spalte 2"));
+//$table->setHeader($header);
+//
+//$row = new HtmlRow();
+//$row->addCell(new HtmlCell("Zeile 1 / Spalte 1"));
+//$row->addCell(new HtmlCell("Zeile 1 / Spalte 2"));
+//$table->addRow($row);
+//
+//$table->display();
 
 // sch�n! Factory genutzt;)
 $factory = new HtmlTableFactory();
@@ -908,6 +908,9 @@ $facade->purchase('bmw', 'rot');
 $facade->purchase('peugeot', 'blau');
 
 var_dump($facade);
+
+// Flywight-Pattern
+
 
 
 

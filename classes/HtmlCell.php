@@ -9,11 +9,8 @@
 **/
 namespace RentalCompany;
 
-class HtmlCell extends Cell
-{
-	public function display()
-	{
-		echo "	<td>{$this->content}</td>";
+class HtmlCell extends Cell {
+	public function display($data) {
+		echo "<td>{$data}</td>";
 	}
 }
-?>
