@@ -9,36 +9,28 @@
 **/
 namespace RentalCompany;
 
-class VehicleList
-{
+class VehicleList {
 	protected $tableFactory = null;
 	
-	public function __construct(ITableFactory $tableFactory)
-	{
+	public function __construct(ITableFactory $tableFactory) {
 		$this->tableFactory = $tableFactory;
 	}
 	
-	public function showTable($data)
-	{
+	public function showTable($data) {
 		$table = $this->tableFactory->createTable();
 		$header = $this->tableFactory->createHeader();
-		$header->addCell($this->tableFactory->createCell('Hersteller'));
-		$header->addCell($this->tableFactory->createCell('Farbe'));
+		$header->addCell('Hersteller');
+		$header->addCell('Farbe');
 		
 		$table->setHeader($header);
 		
-		foreach ($data as $line)
-		{
+		foreach ($data as $line) {
 			$row = $this->tableFactory->createRow();
 			$table->addRow($row);
-			foreach ($line as $field)
-			{
-				$cell = $this->tableFactory->createCell($field);
-				$row->addCell($cell);
+			foreach ($line as $field) {
+				$row->addCell($field);
 			}
 		}
-		
 		$table->display();
 	}
 }
-?>

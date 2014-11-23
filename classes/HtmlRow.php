@@ -16,7 +16,7 @@ class HtmlRow extends Row
 		echo "	<tr>";
 		foreach ($this->cells as $cell)
 		{
-			$cell->display();
+			$this->cell->display($cell);
 		}
 		echo "	</tr>";
 	}

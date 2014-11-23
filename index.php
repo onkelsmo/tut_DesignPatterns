@@ -556,20 +556,20 @@ include 'classes/HtmlTable.php';
 //$table->display();
 
 // sch�n! Factory genutzt;)
-$factory = new HtmlTableFactory();
-
-$table2 = $factory->createTable();
-$header2 = $factory->createHeader();
-$header2->addCell($factory->createCell("Spalte 1"));
-$header2->addCell($factory->createCell("Spalte 2"));
-$table2->setHeader($header2);
-
-$row2 = $factory->createRow();
-$row2->addCell($factory->createCell("Zeile 1 / Spalte 1"));
-$row2->addCell($factory->createCell("Zeile 1 / Spalte 2"));
-$table2->addRow($row2);
-
-$table2->display();
+//$factory = new HtmlTableFactory();
+//
+//$table2 = $factory->createTable();
+//$header2 = $factory->createHeader();
+//$header2->addCell($factory->createCell("Spalte 1"));
+//$header2->addCell($factory->createCell("Spalte 2"));
+//$table2->setHeader($header2);
+//
+//$row2 = $factory->createRow();
+//$row2->addCell($factory->createCell("Zeile 1 / Spalte 1"));
+//$row2->addCell($factory->createCell("Zeile 1 / Spalte 2"));
+//$table2->addRow($row2);
+//
+//$table2->display();
 
 include 'classes/VehicleList.php';
 

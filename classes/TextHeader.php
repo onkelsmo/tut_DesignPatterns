@@ -13,7 +13,7 @@ class TextHeader extends Header {
 	public function display() {
 		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+<br />";
 		foreach ($this->cells as $cell) {
-			$cell->display();
+			$this->cell->display($cell);
 		}
 		echo "|<br />";
 		echo "+" . str_repeat("-", (count($this->cells) * 21) -1 ) . "+<br />";

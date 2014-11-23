@@ -31,6 +31,6 @@ class TextTableFactory implements ITableFactory {
 		if ($this->cell == null) {
 			$this->cell = new TextCell();
 		}
-		return $cell;
+		return $this->cell;
 	}
 }

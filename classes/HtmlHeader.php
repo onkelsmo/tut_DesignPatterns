@@ -16,7 +16,7 @@ class HtmlHeader extends Header
 		echo "	<tr style=\"font-weight: bold;\">";
 		foreach ($this->cells as $cell)
 		{
-			$cell->display();
+			$this->cell->display($cell);
 		}
 		echo "	</tr>";
 	}
