@@ -16,6 +16,10 @@ use ExceptionHandling\CSVFile;
 use RentalCompany\persons\Driver;
 use RentalCompany\displayCar;
 
+
+include './classes/Observer.php';
+include './classes/Observable.php';
+
 include 'classes/freaky_functions.php';
 include 'classes/Vehicle.php';
 include 'classes/Foo.php';
@@ -921,6 +925,27 @@ $list->showTable($data);
 		
 var_dump($list);
 
+// Subject/Observer Pattern
+include './classes/InitialInspectionObserver.php';
 
+$rio = new Car('KIA', 'schwarz');
+$initialInspection = new InitialInspectionObserver();
 
+$rio->attach($initialInspection);
 
+$rio->startEngine();
+$rio->moveForward(500);
+
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+
+$rio->moveForward(700);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->stopEngine();
+
+$rio->startEngine();
+$rio->moveForward(100);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->stopEngine();

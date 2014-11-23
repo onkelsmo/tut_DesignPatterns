@@ -12,8 +12,7 @@ namespace RentalCompany;
 
 use RentalCompany\persons\Driver;
 
-class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \IteratorAggregate
-{
+class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \IteratorAggregate, Observable {
 	// Attributes
 	protected $driver;
 	
@@ -39,6 +38,8 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	
 	protected $maxSpeed;
 	protected $extras = array();
+	
+	protected $observers = array();
 
 	// Properties
 	public function __get($property)
@@ -186,6 +187,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 			return false;
 		}
 		$this->milage += $miles;
+		$this->notify();
 		return true;
 	}
 	
@@ -366,5 +368,19 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	
 	public function addExtra(CarExtra $extra) {
 		$this->extras[] = $extra;
+	}
+	
+	public function attach(Observer $observer) {
+		$this->observers[] = $observer;
+	}
+	
+	public function detach(Observer $observer) {
+		$this->observers = array_diff($this->observers, array($observer));
+	}
+	
+	public function notify() {
+		foreach ($this->observers as $observer) {
+			$observer->update($this);
+		}
 	}
 }
