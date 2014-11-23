@@ -375,7 +375,18 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 	}
 	
 	public function detach(Observer $observer) {
-		$this->observers = array_diff($this->observers, array($observer));
+		// not working because array_diff cant handle Objects
+		// $this->observers = array_diff($this->observers, array($observer));
+		
+		$newObservers = array();
+		
+		foreach ($this->observers as $oldObserver) {
+			if ($oldObserver === $observer) {
+				continue;
+			}
+			$newObservers[] = $observer;
+		}
+		$this->observers = $newObservers;		
 	}
 	
 	public function notify() {
