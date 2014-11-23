@@ -910,6 +910,16 @@ $facade->purchase('peugeot', 'blau');
 var_dump($facade);
 
 // Flywight-Pattern
+$data = array(
+	array('RIO', 'schwarz'),
+	array('Audo', 'blau'),
+	array('Lambourghini', 'gelb'),
+);
+
+$list = new VehicleList(new TextTableFactory());
+$list->showTable($data);
+		
+var_dump($list);
 
 
 
