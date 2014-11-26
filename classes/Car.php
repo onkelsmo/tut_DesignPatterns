@@ -384,7 +384,7 @@ class Car implements Vehicle, \ArrayAccess, \Countable, /*\Iterator,*/ \Iterator
 			if ($oldObserver === $observer) {
 				continue;
 			}
-			$newObservers[] = $observer;
+			$newObservers[] = $oldObserver;
 		}
 		$this->observers = $newObservers;		
 	}

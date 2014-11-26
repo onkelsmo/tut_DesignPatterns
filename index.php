@@ -949,3 +949,29 @@ $rio->moveForward(100);
 printf("Kilometerstand: %d", $rio->getMilage());
 nl();
 $rio->stopEngine();
+
+nl();
+include './classes/RegularInspectionObserver.php';
+
+$rio = new Car('KIA', 'schwarz');
+
+$initialInspection = new InitialInspectionObserver(1000);
+$regularInspection = new RegularInspectionObserver(3500, 2500);
+
+$rio->attach($initialInspection);
+$rio->attach($regularInspection);
+
+$rio->startEngine();
+$rio->moveForward(1000);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->moveForward(2000);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->moveForward(500);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->moveForward(1000);
+printf("Kilometerstand: %d", $rio->getMilage());
+nl();
+$rio->stopEngine();
