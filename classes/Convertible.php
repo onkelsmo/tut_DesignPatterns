@@ -9,8 +9,7 @@
 **/
 namespace RentalCompany;
 
-abstract class Convertible extends Car
-{
+abstract class Convertible extends AbstractCar {
 	public $roofOpen = false;
 
 	abstract public function openRoof();
@@ -34,5 +33,19 @@ abstract class Convertible extends Car
 		}
 		return 75.50;
 	}
+	
+	protected function replaceSparkPlugs() {
+		echo "Ersetze Z&uuml;ndkerzen durch Model BR76.<br />";
+	}
+	
+	protected function checkTires() {
+		echo "&Uuml;berpr&uuml;fe Reifendruck, muss 1,6 bar sein.<br />";
+	}
+	
+	protected function isOilLevelLow() {
+		if ($this->oilLevel < 80) {
+			return true;
+		}
+		return false;
+	}
 }
-?>

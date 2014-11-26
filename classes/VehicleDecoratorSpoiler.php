@@ -17,4 +17,9 @@ class VehicleDecoratorSpoiler extends VehicleDecorator {
 		$rate = $this->vehicle->getDailyRate($days);
 		return $rate + 10;
 	}
+
+	public function inspect() {
+		
+	}
+
 }

@@ -62,5 +62,9 @@ class AutomobileAdapter implements Vehicle {
 		return $this->automobile->getMaxSpeed();
 	}
 
+	public function inspect() {
+		
+	}
+
 }
 

@@ -22,6 +22,7 @@ include './classes/Observable.php';
 
 include 'classes/freaky_functions.php';
 include 'classes/Vehicle.php';
+include './classes/AbstractCar.php';
 include 'classes/Foo.php';
 include 'classes/Car.php';
 include 'classes/Convertible.php';
@@ -275,10 +276,10 @@ nl();
 $toyota = new Car('Toyota', 'Dunkelblau', 0, 'toyota.ini');
 
 // Gewicht ausgeben
-echo "Der Toyota wiegt {$toyota['weight']}.";
-nl();
-echo count($toyota);
-nl();
+//echo "Der Toyota wiegt {$toyota['weight']}.";
+//nl();
+//echo count($toyota);
+//nl();
 
 nl("Objekte als Arrays");
 // Objects as Arrays
@@ -926,6 +927,7 @@ $list->showTable($data);
 var_dump($list);
 
 // Subject/Observer Pattern
+nl("<strong>Subject/Observer Pattern</strong>");
 include './classes/InitialInspectionObserver.php';
 
 $rio = new Car('KIA', 'schwarz');
@@ -975,3 +977,20 @@ $rio->moveForward(1000);
 printf("Kilometerstand: %d", $rio->getMilage());
 nl();
 $rio->stopEngine();
+nl();
+
+nl("<strong>Template-Method Pattern</strong>");
+// Template-Method Pattern
+$rio = new Car('KIA', 'schwarz');
+$peugeot = new AutomaticConvertible('Peugeot', 'rot');
+
+$rio->inspect();
+nl();
+$peugeot->inspect();
+nl();
+
+
+
+
+
+

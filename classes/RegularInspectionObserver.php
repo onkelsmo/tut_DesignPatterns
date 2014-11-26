@@ -22,6 +22,7 @@ class RegularInspectionObserver implements Observer {
 		if ($vehicle->getMilage() >= $this->nextInspection) {
 			echo "Die regelm&auml;&szlig;ige Inspektion ist f&auml;llig "
 			. "({$this->nextInspection}km).<br />";
+			$vehicle->inspect();
 			$this->nextInspection = $this->nextInspection + $this->interval;
 		}
 	}

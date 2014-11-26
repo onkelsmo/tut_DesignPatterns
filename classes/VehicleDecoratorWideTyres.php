@@ -17,4 +17,9 @@ class VehicleDecoratorWideTyres extends VehicleDecorator {
 		$rate = $this->vehicle->getDailyRate($days);
 		return $rate + 5;
 	}
+
+	public function inspect() {
+		
+	}
+
 }

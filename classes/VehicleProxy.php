@@ -42,4 +42,8 @@ class VehicleProxy implements Vehicle {
 		return $this->vehicle->stopEngine();
 	}
 
+	public function inspect() {
+		
+	}
+
 }

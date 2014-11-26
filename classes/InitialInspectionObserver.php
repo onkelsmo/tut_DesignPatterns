@@ -19,6 +19,7 @@ class InitialInspectionObserver implements Observer {
 		
 		if ($vehicle->getMilage() >= $this->inspectionMilage) {
 			echo "Die Erstinspection ist f&auml;llig, da {$this->inspectionMilage}km &uuml;berschritten.<br />";
+			$vehicle->inspect();
 			$vehicle->detach($this);
 		}
 	}

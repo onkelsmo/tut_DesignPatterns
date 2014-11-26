@@ -103,4 +103,9 @@ class Airplane implements Vehicle
 	public function getMaxSpeed() {
 		return $this->maxSpeed;
 	}
+
+	public function inspect() {
+		
+	}
+
 }

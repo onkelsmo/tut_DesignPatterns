@@ -26,5 +26,10 @@ class VehicleDecoratorLowrider extends VehicleDecorator {
 	public function getHeight() {
 		return $this->height;
 	}
+
+	public function inspect() {
+		
+	}
+
 }
 
