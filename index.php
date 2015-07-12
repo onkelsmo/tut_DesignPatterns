@@ -1011,3 +1011,31 @@ foreach ($cars as $car) {
 	echo "{$car->getManufacturer()} ({$car->getMilage()}km)<br />";
 }
 
+nl("<strong>Command Pattern</strong>");
+include './classes/carwash/CarWashCommand.php';
+include './classes/carwash/CarDryingCommand.php';
+include './classes/carwash/CarMotorWashCommand.php';
+include './classes/carwash/CarPreWashCommand.php';
+include './classes/carwash/CarSimpleWashCommand.php';
+include './classes/carwash/CarWaxingCommand.php';
+include './classes/carwash/CarWash.php';
+
+$carWash = new \carwash\CarWash();
+$carWash->addProgramm('standard', array(
+	new \carwash\CarSimpleWashCommand(),
+	new \carwash\CarDryingCommand(),
+));
+$carWash->addProgramm('komfort', array(
+	new \carwash\CarPreWashCommand(),
+	new \carwash\CarSimpleWashCommand(),
+	new \carwash\CarMotorWashCommand(),
+	new \carwash\CarDryingCommand(),
+	new \carwash\CarWaxingCommand(),
+));
+
+$trabbi = new Car("Trabant", 'grau');
+$bmw = new Car('BMW', 'blau');
+
+$carWash->wash('standard', $trabbi);
+$carWash->wash('komfort', $bmw);
+
