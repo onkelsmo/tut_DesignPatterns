@@ -1039,3 +1039,24 @@ $bmw = new Car('BMW', 'blau');
 $carWash->wash('standard', $trabbi);
 $carWash->wash('komfort', $bmw);
 
+nl("<strong>Command Pattern example</strong>");
+include './classes/io/filesystem/FileOperationCommand.php';
+include './classes/io/filesystem/RenameFile.php';
+include './classes/io/filesystem/CopyFile.php';
+include './classes/io/filesystem/Batch.php';
+
+$batch = new \io\filesystem\Batch();
+$batch->add(new \io\filesystem\CopyFile('TestFile.txt', 'CopiedFile.txt'));
+$batch->add(new \io\filesystem\RenameFile('CopiedFile.txt', 'NewName.txt'));
+
+$batch->execute();
+if (file_exists('NewName.txt')) {
+	echo "Die Datei NewName.txt existiert.<br />";
+}
+
+$batch->undo();
+if (!file_exists('NewName.txt')) {
+	echo "Die Datei NewName.txt existiert nicht mehr.<br />";
+}
+
+nl("<strong>Commands as Lambdas</strong>");
