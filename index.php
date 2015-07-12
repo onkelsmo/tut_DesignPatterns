@@ -1060,3 +1060,14 @@ if (!file_exists('NewName.txt')) {
 }
 
 nl("<strong>Commands as Lambdas</strong>");
+$simpleWash = function(Vehicle $vehicle) {
+	printf("Das Auto %s wird gewaschen.<br />", $vehicle->getManufacturer());
+};
+$dry = function(Vehicle $vehicle) {
+	printf("Das Auto %s wird getrocknet.<br />", $vehicle->getManufacturer());
+};
+
+$trabbi = new Car('Trabant', 'grau');
+$simpleWash($trabbi);
+$dry($trabbi);
+
