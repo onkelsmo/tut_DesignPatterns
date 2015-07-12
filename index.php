@@ -989,8 +989,25 @@ nl();
 $peugeot->inspect();
 nl();
 
+nl("<strong>PHP native sort Method</strong>");
+$ints = array(4053, 23, 283, 20032);
+sort($ints);
 
+foreach ($ints as $int) {
+	echo "{$int}<br />";
+}
 
+nl("<strong>PHP usort with callback method</strong>");
+include './classes/VehicleSorter.php';
+$cars = array(
+	new Car('BMW', 'blau', 500),
+	new Car('VW', 'grün', 34255),
+	new Car('Porsche', 'rot', 5000),
+	new Car('Mercedes', 'grau', 10),
+);
 
-
+usort($cars, array('VehicleSorter', 'sortByMilage'));
+foreach ($cars as $car) {
+	echo "{$car->getManufacturer()} ({$car->getMilage()}km)<br />";
+}
 
